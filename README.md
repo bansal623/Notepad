@@ -1,1 +1,1 @@
-# This is a text editor coded in Java
+This is a GUI based text editor coded in Java

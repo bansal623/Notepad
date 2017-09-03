@@ -5,8 +5,8 @@ import java.util.regex.*;
 import java.util.*;
 import javax.swing.*;
 
-public class Notepad implements ActionListener,KeyListener
-{
+public class Notepad implements ActionListener,KeyListener {
+  // Declare components
 	Frame f;
 	MenuBar mb;
 	Menu m1,m2;
@@ -32,8 +32,9 @@ public class Notepad implements ActionListener,KeyListener
 	boolean key=false;
 	boolean saved=false;
 	int arr[]=new int[20];
-	public Notepad()
-	{
+
+  // Default constructor
+  public Notepad() {
 		st.push("A");
 		f=new Frame(nm);
 		f.setSize(400,400);
@@ -52,7 +53,7 @@ public class Notepad implements ActionListener,KeyListener
 		b3=new Button("Find Next");
 		b4=new Button("Replace");
 		b5=new Button("Replace All");
-	    b6=new Button("Close");
+	  b6=new Button("Close");
 		nw.addActionListener(this);
 		opn.addActionListener(this);
 		sve.addActionListener(this);
@@ -62,10 +63,10 @@ public class Notepad implements ActionListener,KeyListener
 		fr.addActionListener(this);
 		b1.addActionListener(this);
 		b2.addActionListener(this);
-	    b3.addActionListener(this);
-	    b4.addActionListener(this);
-	    b5.addActionListener(this);
-	    b6.addActionListener(this);
+	  b3.addActionListener(this);
+	  b4.addActionListener(this);
+	  b5.addActionListener(this);
+	  b6.addActionListener(this);
 		m2.add(fnd);    m2.add(fr);
 		m1.add(nw);     m1.add(opn);
 		m1.add(sve); m1.add(sveas);
@@ -77,38 +78,38 @@ public class Notepad implements ActionListener,KeyListener
 		f.setVisible(true);
 
 		f1=new Frame("Find");
-    	f1.setSize(400,250);
-    	f1.setLayout(new GridLayout(2,2));
-    	p1=new Panel();
-    	p2=new Panel();
-    	Label l1=new Label("Find");
-    	p1.add(l1);
-    	t3=new TextField(5);
-    	p1.add(t3);
+  	f1.setSize(400,250);
+  	f1.setLayout(new GridLayout(2,2));
+  	p1=new Panel();
+  	p2=new Panel();
+  	Label l1=new Label("Find");
+  	p1.add(l1);
+  	t3=new TextField(5);
+  	p1.add(t3);
 
-    	p2.add(b1);       p2.add(b2);
-    	f1.add(p1);       f1.add(p2);
+  	p2.add(b1);       p2.add(b2);
+  	f1.add(p1);       f1.add(p2);
 
-    	f3=new Frame("Find & Replace");
-    	f3.setSize(400,250);
-    	f3.setLayout(new GridLayout(5,4));
-    	p1=new Panel();  p2=new Panel();
-    	p3=new Panel();  p4=new Panel();  p5=new Panel();
-    	l1=new Label("Find");
-    	p1.add(l1);
-    	t1=new TextField(5);
-    	p2.add(t1);
-    	Label l2=new Label("Replace With");
-    	p3.add(l2);
-    	t4=new TextField(5);
-    	p4.add(t4);
-    	p5.add(b3);  p5.add(b4);
-    	p5.add(b5);  p5.add(b6);
-    	f3.add(p1);  f3.add(p2);
-    	f3.add(p3);  f3.add(p4);
-    	f3.add(p5);
+  	f3=new Frame("Find & Replace");
+  	f3.setSize(400,250);
+  	f3.setLayout(new GridLayout(5,4));
+  	p1=new Panel();  p2=new Panel();
+  	p3=new Panel();  p4=new Panel();  p5=new Panel();
+  	l1=new Label("Find");
+  	p1.add(l1);
+  	t1=new TextField(5);
+  	p2.add(t1);
+  	Label l2=new Label("Replace With");
+  	p3.add(l2);
+  	t4=new TextField(5);
+  	p4.add(t4);
+  	p5.add(b3);  p5.add(b4);
+  	p5.add(b5);  p5.add(b6);
+  	f3.add(p1);  f3.add(p2);
+  	f3.add(p3);  f3.add(p4);
+  	f3.add(p5);
 
-    	f4=new Frame("Close");
+  	f4=new Frame("Close");
 		f4.setSize(400,250);
 		f4.setLayout(new GridLayout(3,2));
 		p6=new Panel();  p7=new Panel();
@@ -125,421 +126,391 @@ public class Notepad implements ActionListener,KeyListener
 		b9.addActionListener(this);
 		ta.addKeyListener(this);
 
-		f.addWindowListener(new WindowAdapter()
-		{
-	    	public void windowClosing(WindowEvent we)
-				{
-					while(true)
-					{
-					if(st.peek().equals("A"))
-					{
-						break;
-					}
-					else
-					{
-						st.pop();
-					}
-					System.out.println(st);
-					}
-					if(ta.getText().equals("") | key==false)
-					{
-						count=1;
-						System.exit(0);
-					}
-					if(key)
-					{
-						if(count==1)
-						{
-
-						}
-						else
-						{
-							f4.setVisible(true);
-						}
-						count=0;
-					}
-
-
-
+		f.addWindowListener(new WindowAdapter() {
+    	public void windowClosing(WindowEvent we) {
+				while(true) {
+  				if(st.peek().equals("A")) {
+  					break;
+  				}
+  				else {
+  					st.pop();
+  				}
+				System.out.println(st);
 				}
+				if(ta.getText().equals("") | key==false) {
+					count=1;
+					System.exit(0);
+				}
+				if(key) {
+					if(count==1) {
+					}
+					else {
+						f4.setVisible(true);
+					}
+					count=0;
+				}
+			}
 		});
 
-		f1.addWindowListener(new WindowAdapter()
-		{
-	    	public void windowClosing(WindowEvent e)
-				{
-				Window w=e.getWindow();
-				w.setVisible(false);
-				w.dispose();
-				}
+		f1.addWindowListener(new WindowAdapter() {
+    	public void windowClosing(WindowEvent e) {
+  			Window w=e.getWindow();
+  			w.setVisible(false);
+  			w.dispose();
+			}
 		});
 
-		f3.addWindowListener(new WindowAdapter()
-		{
-	    	public void windowClosing(WindowEvent e)
-				{
-					Window w=e.getWindow();
-					w.setVisible(false);
-					w.dispose();
-				}
-		});
-
-		f4.addWindowListener(new WindowAdapter()
-		{
-	    	public void windowClosing(WindowEvent e)
-			{
+		f3.addWindowListener(new WindowAdapter() {
+    	public void windowClosing(WindowEvent e) {
 				Window w=e.getWindow();
 				w.setVisible(false);
 				w.dispose();
 			}
 		});
 
+		f4.addWindowListener(new WindowAdapter() {
+    	public void windowClosing(WindowEvent e) {
+  			Window w=e.getWindow();
+  			w.setVisible(false);
+  			w.dispose();
+  		}
+		});
+
 
 	}
 
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e) {
 		//st.push("A");
 		//st.push("B");
 		str=e.getActionCommand();
-		if(str.equals("New"))
-   		{
-   			st.push("New");
-   			System.out.println(st.peek());
-   			if(key==false)
-   			{
-   				ta.setText("");
-   				nm="Untitled 1";
-   				f.setTitle(nm);
-   			}
-   			else
-   			{
-   				f4.setVisible(true);
-   			}
-   			saved=false;
 
-
+    // New is clicked
+		if(str.equals("New")) {
+ 			st.push("New");
+ 			System.out.println(st.peek());
+ 			if(key==false) {
+ 				ta.setText("");
+ 				nm="Untitled 1";
+ 				f.setTitle(nm);
+ 			}
+ 			else {
+ 				f4.setVisible(true);
+ 			}
+ 			saved=false;
 		}
-		if(str.equals("Open"))
-	    {
-	    	st.push("Open");
-	    	System.out.println(st.peek());
-	    	if((saved & key==false) || saved==false & key==false)
-	    	{
-	    		open();
-	    	}
 
-   			else
-   			{
-   				f4.setVisible(true);
-   			}
-	    }
-	    if(str.equals("Save"))
-	   	 {
-	   	 	if((key & saved)|| (!key & saved))
+    // Open is clicked
+		if(str.equals("Open")) {
+    	st.push("Open");
+    	System.out.println(st.peek());
+    	if((saved & key==false) || saved==false & key==false) {
+    		open();
+    	}
+ 			else {
+ 				f4.setVisible(true);
+ 			}
+    }
+
+    // Save is clicked
+    if(str.equals("Save")) {
+   	 	if((key & saved)|| (!key & saved)) {
+  			saveWithout(); }
+		  else {
+			 save();
+	   	}
+   	}
+
+    // Save As is clicked
+   	if(str.equals("Save As")) {
+   		save();
+   	}
+   	if(str.equals("Close"))
+  	{
+  		f1.setVisible(false);
+  		f3.setVisible(false);
+  	}
+  	if(str.equals("Find"))
+  	{
+  		t3.setText("");
+  		f1.setVisible(true);
+  	}
+  	if(str.equals("FindNext"))
+  	 {
+  	 	find1();
+  	 }
+  	if(str.equals("Find Next"))
+  	 {
+  	 	find();
+  	 }
+  	 if(str.equals("Replace"))
+  	 {
+  	 	replace();
+  	 }
+  	 if(str.equals("Replace All"))
+  	{
+
+    	replaceAll();
+  	}
+  	if(str.equals("Find & Replace"))
+  	{
+  		t1.setText("");
+  		t4.setText("");
+  		f3.setVisible(true);
+  	}
+  	if(str.equals("Exit"))
+  	{
+  		if(key)
+  		{
+  			f4.setVisible(true);
+  		}
+  		else
+  		{
+  			f.setVisible(false);
+  		}
+
+  	}
+  	if(str.equals("Yes"))
+	{
+		while(true)
+		{
+			if(key & saved)
 			{
+			if(st.peek().equals("New"))
+			{
+			  st.pop();
+			  System.out.println(1);
+			  f4.setVisible(false);
+			  saveWithout();
+			  ta.setText("");
+			  nm="Untitled1";
+			  f.setTitle(nm);
+			  break;
+
+			}
+
+			if(st.peek().equals("Open"))
+			{
+				 st.pop();
+				 System.out.println(2);
+				 f4.setVisible(false);
+			  	 saveWithout();
+			  	 open();
+			  	 break;
+			}
+
+			else
+			{
+
+				System.out.println(3);
+				f4.setVisible(false);
 				saveWithout();
+				System.exit(0);
+			}
+
+			}
+		if(key)
+		{
+			if(st.peek().equals("New"))
+			{
+			  st.pop();
+			  System.out.println(4);
+			  f4.setVisible(false);
+			  if(st.peek().equals("Open"))
+				{
+					saveWithout();
+				}
+				else
+				{
+					save();
+				}
+
+			  if(saved==false)
+			  {
+			  	try
+			  	{
+			  		writer.close();
+			  	}
+			  	catch(IOException m)
+			  	{
+
+			  	}
+			  	catch(NullPointerException h)
+		  	{
+		  		break;
+						  	}
+
+			  }
+			  else
+			  {
+			  ta.setText("");
+			  nm="Untitled1";
+			  f.setTitle(nm);
+			  break;
+			  }
+
+			}
+
+			if(st.peek().equals("Open"))
+			{
+				st.pop();
+				System.out.println(5);
+				f4.setVisible(false);
+			  	save();
+			  	 if(saved==false)
+			  	 {
+			  		try
+			  		{
+			  		 writer.close();
+			  		}
+			  		catch(IOException m)
+			  		{
+
+			  		}
+			  		catch(NullPointerException h)
+		  	{
+		  		break;
+						  	}
+
+			  	}
+			  	else
+			  	{
+			  		open();
+			  		break;
+			  	}
 			}
 			else
 			{
-				save();
-			}
-	   	 }
-	   	if(str.equals("Save As"))
-	   	{
-	   		save();
-	   	}
-	   	if(str.equals("Close"))
-    	{
-    		f1.setVisible(false);
-    		f3.setVisible(false);
-    	}
-    	if(str.equals("Find"))
-    	{
-    		t3.setText("");
-    		f1.setVisible(true);
-    	}
-    	if(str.equals("FindNext"))
-    	 {
-    	 	find1();
-    	 }
-    	if(str.equals("Find Next"))
-    	 {
-    	 	find();
-    	 }
-    	 if(str.equals("Replace"))
-    	 {
-    	 	replace();
-    	 }
-    	 if(str.equals("Replace All"))
-    	{
-
-	    	replaceAll();
-    	}
-    	if(str.equals("Find & Replace"))
-    	{
-    		t1.setText("");
-    		t4.setText("");
-    		f3.setVisible(true);
-    	}
-    	if(str.equals("Exit"))
-    	{
-    		if(key)
-    		{
-    			f4.setVisible(true);
-    		}
-    		else
-    		{
-    			f.setVisible(false);
-    		}
-
-    	}
-    	if(str.equals("Yes"))
-		{
-			while(true)
-			{
-				if(key & saved)
-				{
-				if(st.peek().equals("New"))
-				{
-				  st.pop();
-				  System.out.println(1);
-				  f4.setVisible(false);
-				  saveWithout();
-				  ta.setText("");
-				  nm="Untitled1";
-				  f.setTitle(nm);
-				  break;
-
-				}
-
-				if(st.peek().equals("Open"))
-				{
-					 st.pop();
-					 System.out.println(2);
-					 f4.setVisible(false);
-				  	 saveWithout();
-				  	 open();
-				  	 break;
-				}
-
-				else
-				{
-
-					System.out.println(3);
-					f4.setVisible(false);
-					saveWithout();
-					System.exit(0);
-				}
-
-				}
-			if(key)
-			{
-				if(st.peek().equals("New"))
-				{
-				  st.pop();
-				  System.out.println(4);
-				  f4.setVisible(false);
-				  if(st.peek().equals("Open"))
-					{
-						saveWithout();
-					}
-					else
-					{
-						save();
-					}
-
-				  if(saved==false)
-				  {
-				  	try
-				  	{
-				  		writer.close();
-				  	}
-				  	catch(IOException m)
-				  	{
-
-				  	}
-				  	catch(NullPointerException h)
+			  System.out.println(6);
+			  f4.setVisible(false);
+			  save();
+			  System.out.println(saved);
+			  if(saved==false)
+			  {
+			  	try
 			  	{
-			  		break;
-							  	}
-
-				  }
-				  else
-				  {
-				  ta.setText("");
-				  nm="Untitled1";
-				  f.setTitle(nm);
-				  break;
-				  }
-
-				}
-
-				if(st.peek().equals("Open"))
-				{
-					st.pop();
-					System.out.println(5);
-					f4.setVisible(false);
-				  	save();
-				  	 if(saved==false)
-				  	 {
-				  		try
-				  		{
-				  		 writer.close();
-				  		}
-				  		catch(IOException m)
-				  		{
-
-				  		}
-				  		catch(NullPointerException h)
+			  		writer.close();
+			  	}
+			  	catch(IOException m)
 			  	{
-			  		break;
-							  	}
 
-				  	}
-				  	else
-				  	{
-				  		open();
-				  		break;
-				  	}
-				}
-				else
-				{
-				  System.out.println(6);
-				  f4.setVisible(false);
-				  save();
-				  System.out.println(saved);
-				  if(saved==false)
-				  {
-				  	try
-				  	{
-				  		writer.close();
-				  	}
-				  	catch(IOException m)
-				  	{
-
-				  	}
-			  	catch(NullPointerException h)
-			  	{
-			  		break;
-				}
-
-
-				  }
-				  else
-				  {
-				  	System.exit(0);
-				  }
-
-
-				}
-
+			  	}
+		  	catch(NullPointerException h)
+		  	{
+		  		break;
 			}
 
 
+			  }
+			  else
+			  {
+			  	System.exit(0);
+			  }
+
+
 			}
+
 		}
-		if(str.equals("No"))
-		{
-			while(true)
-			{
-			if(key)
-			{
-				if(st.peek().equals("New"))
-				{
-				  st.pop();
-				  f4.setVisible(false);
-				  ta.setText("");
-				  nm="Untitled1";
-				  f.setTitle(nm);
-				  key=false;
-				  break;
-				}
-
-				if(st.peek().equals("Open"))
-				{
-					 st.pop();
-					 f4.setVisible(false);
-				  	 open();
-				  	 break;
-				}
-				else
-				{
-					System.exit(0);
-				}
-
-			}
-			}
 
 
 		}
-		if(str.equals("Cancel"))
+	}
+	if(str.equals("No"))
+	{
+		while(true)
 		{
-			f4.setVisible(false);
+		if(key)
+		{
+			if(st.peek().equals("New"))
+			{
+			  st.pop();
+			  f4.setVisible(false);
+			  ta.setText("");
+			  nm="Untitled1";
+			  f.setTitle(nm);
+			  key=false;
+			  break;
+			}
+
+			if(st.peek().equals("Open"))
+			{
+				 st.pop();
+				 f4.setVisible(false);
+			  	 open();
+			  	 break;
+			}
+			else
+			{
+				System.exit(0);
+			}
+
+		}
 		}
 
 
 	}
-
-	void save()
+	if(str.equals("Cancel"))
 	{
-				fd= new FileDialog(f,"Save File",FileDialog.SAVE);
-	    		fd.setVisible(true);
-		    		fn=fd.getFile();
-	    		nm=fd.getFile();
-	    		f.setTitle(nm);
-	    		fp=fd.getDirectory();
-
-	    		if(fd.getFile()==null)
-	    		{
-	    			count=1;
-	    			f.setTitle(nm);
-	    		}
-
-	    		else
-	    		{
-	    			File f=new File(fp,fn);
-	    			temp=new File(fp,fn);
-
-	    		try
-	    		{
-
-	    	    f.createNewFile();
-	    		writer = new FileWriter(f);
-	   			wr=ta.getText();
-	   			writer.write(wr);
-	      		writer.flush();
-	     		writer.close();
-
-	     			key=false;
-	     			saved=true;
-	    		}
-
-	    		catch(Exception a)
-	    		{
-	    			a.printStackTrace();
-	    		//	ta.setText("MOhit Basnal");
-	    		}
-	    	}
+		f4.setVisible(false);
 	}
 
-	void saveWithout()
-	{
-			try
-			{
-					 writer = new FileWriter(temp);
-		   			String wr=ta.getText();
-		         	writer.write(wr);
-			      	writer.flush();
-			     	writer.close();
-			     	key=false;
-			     	saved=true;
-		   	}
 
-		   	catch(Exception d)
-		   	{
-		   		System.out.println("file exists");
-		    }
+}
+
+void save() {
+	  fd= new FileDialog(f,"Save File",FileDialog.SAVE);
+		fd.setVisible(true);
+  	fn=fd.getFile();
+		nm=fd.getFile();
+		f.setTitle(nm);
+		fp=fd.getDirectory();
+
+		if(fd.getFile()==null)
+		{
+			count=1;
+			f.setTitle(nm);
+		}
+
+		else
+		{
+			File f=new File(fp,fn);
+			temp=new File(fp,fn);
+
+		try
+		{
+
+	    f.createNewFile();
+		writer = new FileWriter(f);
+			wr=ta.getText();
+			writer.write(wr);
+  		writer.flush();
+ 		writer.close();
+
+ 			key=false;
+ 			saved=true;
+		}
+
+		catch(Exception a)
+		{
+			a.printStackTrace();
+		//	ta.setText("MOhit Basnal");
+		}
+  }
+}
+
+	void saveWithout() {
+  	try {
+		  writer = new FileWriter(temp);
+ 			String wr=ta.getText();
+      writer.write(wr);
+      writer.flush();
+     	writer.close();
+     	key=false;
+     	saved=true;
+    }
+   	catch(Exception d)
+   	{
+   		System.out.println("file exists");
+    }
 	}
 
 	void open()
@@ -570,14 +541,14 @@ public class Notepad implements ActionListener,KeyListener
 			       		FileReader fis=new FileReader(f1);
 			    	  	BufferedReader br=new BufferedReader(fis);
 
-                                 int ch;
-                                 while((ch=br.read())!=-1)
-                                 {
-                          		        String n=""+(char)ch;
-			    				        ta.setText(ta.getText()+n);
-			    			     }
-			    			     saved=true;
-			    			     key=false;
+                 int ch;
+                 while((ch=br.read())!=-1)
+                 {
+          		      String n=""+(char)ch;
+	                 ta.setText(ta.getText()+n);
+			    			 }
+	    			     saved=true;
+	    			     key=false;
 
 			    			fis.close();
 			   		}
@@ -588,55 +559,55 @@ public class Notepad implements ActionListener,KeyListener
 				}
 			}
 
-		void find()
-		{
+void find()
+{
 			tt1=ta.getSelectedText().length();
 		    t=ta.getCaretPosition()+tt1;
 		    ta.requestFocus();
-            str2=t1.getText();
+  str2=t1.getText();
 
-           	Pattern p=Pattern.compile(Pattern.quote(str2));
-            str3=ta.getText();
-            str3 = str3.replaceAll("\r", "");
-           	ta.setText(str3);
-        	Matcher m=p.matcher(str3);
-           	ta.setCaretPosition(t);
-           		System.out.println(t);
-           		int str5=ta.getText().length();
-           	if(t>str5)
-           	{
-           				JFrame f2=new JFrame();
-          		    	f2.setSize(200,200);
-          		    	JLabel l1=new JLabel("Cannot Find "+str2);
-          		    	JButton b1=new JButton("Ok");
-          		    	b1.addActionListener(this);
-          		    	f2.add(l1);f.add(b1);
-          		    	f2.setVisible(true);
-          		    	t=0;
+ 	Pattern p=Pattern.compile(Pattern.quote(str2));
+  str3=ta.getText();
+  str3 = str3.replaceAll("\r", "");
+ 	ta.setText(str3);
+  Matcher m=p.matcher(str3);
+ 	ta.setCaretPosition(t);
+ 		System.out.println(t);
+ 		int str5=ta.getText().length();
+ 	if(t>str5)
+ 	{
+ 				JFrame f2=new JFrame();
+		    	f2.setSize(200,200);
+		    	JLabel l1=new JLabel("Cannot Find "+str2);
+		    	JButton b1=new JButton("Ok");
+		    	b1.addActionListener(this);
+		    	f2.add(l1);f.add(b1);
+		    	f2.setVisible(true);
+		    	t=0;
 
-           	}
-		           	else
-		           		if(m.find(t))
-                    {
-                           c=m.start();
-           	               d=m.end();
-  	                       ta.select(c,d);
-  	                       System.out.println("mohit");
-  	          		}
-		           else
+ 	}
+     	else
+     		if(m.find(t))
+          {
+                 c=m.start();
+ 	               d=m.end();
+                 ta.select(c,d);
+                 System.out.println("mohit");
+    		}
+     else
 
-          		    {
-          		    	f5=new JFrame();
-          		    	f5.setSize(200,200);
-          		    	JLabel l1=new JLabel("Cannot find "+str2);
-          		    	JButton b1=new JButton("Ok");
-          		    	b1.addActionListener(this);
+		    {
+		    	f5=new JFrame();
+		    	f5.setSize(200,200);
+		    	JLabel l1=new JLabel("Cannot find "+str2);
+		    	JButton b1=new JButton("Ok");
+		    	b1.addActionListener(this);
 
-          		    	f5.add(l1);f.add(b1);
-          		    	f5.setVisible(true);
-          		    	t=0;
+		    	f5.add(l1);f.add(b1);
+		    	f5.setVisible(true);
+		    	t=0;
 
-          		    }
+		    }
 		}
 
 		void find1()
